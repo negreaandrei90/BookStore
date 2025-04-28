@@ -1,9 +1,10 @@
 package com.neontodo.BookStore_API.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -16,7 +17,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -27,16 +28,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
-    @Column(unique = true, nullable = false, updatable = false)
-    private UUID uuid;
-
-    @PrePersist
-    public void generateUuid() {
-        if(uuid == null) {
-            uuid = UUID.randomUUID();
-        }
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    @Column(nullable = false)
+    private LocalDate birthday;
 }

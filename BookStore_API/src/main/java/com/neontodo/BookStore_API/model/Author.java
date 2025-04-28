@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.ArrayList;
 
 @Entity
-@Table(name = "Author")
+@Table(name = "authors")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,7 +16,7 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @Column(name = "full_name")
     private String fullName;

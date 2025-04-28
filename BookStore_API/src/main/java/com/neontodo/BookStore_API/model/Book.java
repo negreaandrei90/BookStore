@@ -2,10 +2,8 @@ package com.neontodo.BookStore_API.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "books")
@@ -15,9 +13,10 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Builder
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     @Column(nullable = false)
     private String title;
@@ -45,8 +44,4 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories;
-
-    @Column(name = "uuid")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID uuid;
 }
